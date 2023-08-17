@@ -18,8 +18,8 @@ links = {
 # ])
 
 argsList = sys.argv[1:]
-options = 'l:a:hf'
-long_options = ['link_name=', 'link_address=', 'help', 'ffmpeg']
+options = 'l:u:hf'
+long_options = ['link_name=', 'url=', 'help', 'ffmpeg']
 
 
 try:
@@ -48,7 +48,7 @@ try:
           -f, --ffmpeg: Download ffmpeg.
           -h, --help: Display help.
         ''')
-      elif opt in ['-a', '--address']:
+      elif opt in ['-u', '--url']:
         name = uuid.uuid4()
         os.mkdir(name)
         os.chdir(name)
