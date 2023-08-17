@@ -12,11 +12,6 @@ links = {
     'fottyseven': 'https://open.spotify.com/playlist/3Vs0BsFg7JLdeBV4ZfkilJ',
 }
 
-# args = argparse.ArgumentParser(description='Download songs from spotify playlist')
-# args.add_argument('-l', '--link', help="Specify the link from available options", choices=[
-  
-# ])
-
 argsList = sys.argv[1:]
 options = 'l:u:hf'
 long_options = ['link_name=', 'url=', 'help', 'ffmpeg']
@@ -25,7 +20,7 @@ long_options = ['link_name=', 'url=', 'help', 'ffmpeg']
 try:
     opts, vals = getopt.getopt(argsList, options, long_options)
     for (opt, arg) in opts:
-      if opt in ['-l', '--link']:
+      if opt in ['-l', '--link_name']:
         name = links[str(arg)]
         try:
           os.mkdir(str(arg))
