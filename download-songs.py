@@ -44,10 +44,10 @@ try:
           -h, --help: Display help.
         ''')
       elif opt in ['-u', '--url']:
-        name = uuid.uuid4()
+        name = str(uuid.uuid4())
         os.mkdir(name)
         os.chdir(name)
-        os.system(f"spodl {arg} --output {{title}}.{{output-ext}} --overwrite skip --threads 5")
+        os.system(f"spotdl {arg} --output {{title}}.{{output-ext}} --overwrite skip --threads 5")
       elif opt in ['-f', '--ffmpeg']:
         os.system('python -m spotdl --download-ffmpeg')
          
