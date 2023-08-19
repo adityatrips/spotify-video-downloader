@@ -20,17 +20,18 @@ long_options = ['link_name=', 'url=', 'help', 'ffmpeg']
 try:
     opts, vals = getopt.getopt(argsList, options, long_options)
     for (opt, arg) in opts:
-      if opt in ['-l', '--link_name']:
-        name = links[str(arg)]
-        try:
-          os.mkdir(str(arg))
-        except FileExistsError: 
-          pass
-        finally:
-          os.chdir(str(arg))
-        os.system(f"python -m spotdl {name}  --output {{title}}.{{output-ext}} --overwrite skip --threads 5")
-      elif opt in ['-h', '--help']:
-        print('''
+        if opt in ['-l', '--link_name']:
+            name = links[str(arg)]
+            try:
+                os.mkdir(str(arg))
+            except FileExistsError:
+                pass
+            finally:
+                os.chdir(str(arg))
+            os.system(
+                f"python -m spotdl {name}  --output {{title}}.{{output-ext}} --overwrite skip --threads 5")
+        elif opt in ['-h', '--help']:
+            print('''
           -l, --link: Specify the link from available options.
               options:
                 english-pop
@@ -43,13 +44,14 @@ try:
           -f, --ffmpeg: Download ffmpeg.
           -h, --help: Display help.
         ''')
-      elif opt in ['-u', '--url']:
-        name = str(uuid.uuid4())
-        os.mkdir(name)
-        os.chdir(name)
-        os.system(f"spotdl {arg} --output {{title}}.{{output-ext}} --overwrite skip --threads 5")
-      elif opt in ['-f', '--ffmpeg']:
-        os.system('python -m spotdl --download-ffmpeg')
-         
+        elif opt in ['-u', '--url']:
+            name = str(uuid.uuid4())
+            os.mkdir(name)
+            os.chdir(name)
+            os.system(
+                f"spotdl {arg} --output {{title}}.{{output-ext}} --overwrite skip --threads 5")
+        elif opt in ['-f', '--ffmpeg']:
+            os.system('python -m spotdl --download-ffmpeg')
+
 except getopt.error as e:
     print(str(e))
